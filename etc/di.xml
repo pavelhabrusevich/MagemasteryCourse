@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--когда в конструкторе зададим какой-то из этих интерфейосов, то обжект менеджер создаст объект соответсвующего класа -->
+    <preference for="Magemastery\Todo\Api\TaskManagementInterface" type="Magemastery\Todo\Service\TaskManagement"/>
+    <preference for="Magemastery\Todo\Api\TaskRepositoryInterface" type="Magemastery\Todo\Service\TaskRepository"/>
+    <preference for="Magemastery\Todo\Api\Data\TaskInterface" type="Magemastery\Todo\Model\Task"/>
+
+    <preference for="Magemastery\Todo\Api\Data\TaskSearchResultInterface" type="Magemastery\Todo\Model\ResourceModel\Task\Collection"/>
+    <preference for="Magemastery\Todo\Api\CustomerTaskListInterface" type="Magemastery\Todo\Service\CustomerTaskList"/>
+    <preference for="Magemastery\Todo\Api\TaskStatusManagementInterface" type="Magemastery\Todo\Service\TaskStatusManagement"/>
+</config>

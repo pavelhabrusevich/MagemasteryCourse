@@ -1,0 +1,18 @@
+<!--в шаблоне может быт как статический html, так и динамический php-->
+<!--чтобы шаблон заколосился на фронте, надо его добавить в layot. Добавляем в layout referenceContainer-->
+<?php
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+?>
+<!--указываем место, где будет размещен наш ui-компонент to do. Если не указать, то он не отрастет-->
+<div data-bind="scope: 'todo'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": <?= $block->getJsLayout() ?>
+        }
+    }
+</script>

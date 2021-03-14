@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <!--название файла состоит из to do - route id из файла routes.xml-->
+    <!--index, index - контроллер, который отвечает за эт страницу-->
+    <update handle="customer_account"/>
+    <!--этот handle очень крутая штука. Он подтягивает блок со ссылками для кастоемр аккаунта-->
+<!--добавляем стили в лаяут. А именно css файл со стилями-->
+    <head>
+        <css src="Magemastery_Todo::css/todo.css"/>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">My ToDo list</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+<!--class Template - отвечает за отрисовку to do.phtml, name - уникальное имя блока с головы, template - наш файл template-->
+            <block class="Magento\Framework\View\Element\Template"
+                   name="magemastery.todo.block.list"
+                   template="Magemastery_Todo::todo.phtml">
+                <arguments>
+<!--argument name="jsLayout" - эти аргументы будут залетать в конструктор класа Template. Добавляя в лаяут айтемы из phtml мы можем
+ расширять уже существующие лаяуты. Хороший пример это checkout.index.index-->
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="todo" xsi:type="array">
+                                <item name="component" xsi:type="string">Magemastery_Todo/js/view/todo</item>
+                                <item name="template" xsi:type="string">Magemastery_Todo/todo</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+<!--V1 - версия ендпоинта. Если будем создавать похожий, то в новом версию просто можно поменять-->
+<!--service - клас или интерфейс обрабатывает входящий запрос по данному URl и методу-->
+<!--resource - отвечает за уровень доступа. в нашем случае anonymous - любой человек или сервис может получить доступ-->
+    <route url="/V1/customer/todo/tasks" method="GET">
+        <service class="Magemastery\Todo\Api\CustomerTaskListInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+<!--обновление статуса задачи-->
+    <route url="/V1/customer/todo/task/update" method="POST">
+        <service class="Magemastery\Todo\Api\TaskStatusManagementInterface" method="change"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+<!--удаление задачи-->
+    <route url="/V1/customer/todo/task/delete" method="POST">
+        <service class="Magemastery\Todo\Api\TaskManagementInterface" method="delete"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+<!--добавление задачи-->
+    <route url="/V1/customer/todo/task/create" method="POST">
+        <service class="Magemastery\Todo\Api\TaskManagementInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>
